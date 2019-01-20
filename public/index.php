@@ -5,3 +5,7 @@
  * File: index.php
  * Copyright @ 2019 Cosmin Fane Cozma. All rights reserved
  */
+
+require_once '../core/bootstrap.php';
+
+$app = new exelixi\Application();
