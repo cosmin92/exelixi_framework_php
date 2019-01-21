@@ -43,8 +43,7 @@ class Request
         $this->url = filter_input(INPUT_SERVER, 'REQUEST_URI');
         $this->method = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
         $this->query_string = filter_input(INPUT_SERVER, 'QUERY_STRING');
-        $this->params = explode('/', $this->query_string);
-        print_r(Router::getRoutes());
+        $this->params = explode('/', trim(rtrim(ltrim($this->query_string, '/'), '/')));
     }
 
     /**

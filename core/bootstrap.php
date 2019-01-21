@@ -13,9 +13,11 @@ define('APP_NAME', 'exelixi');
 
 // Utilities
 require_once ROOT . 'core/utilities/util_functions.php';
+
 // Dispatcher
 require_once ROOT . 'core/dispatcher/Router.php';
 require_once ROOT . 'core/dispatcher/Request.php';
+require_once ROOT . 'core/dispatcher/Dispatcher.php';
 require_once ROOT . 'config/routes.php';
 
 require_once ROOT . 'core/Application.php';

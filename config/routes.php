@@ -9,4 +9,5 @@
 use exelixi\dispatcher\Router;
 
  Router::root("StaticPages", "Home");
- Router::add("About","StaticPages", "Home", "POST");
+ Router::add("About","StaticPages", "Home", "GET");
+ Router::add("testcontroller/test", "TestController", "test");

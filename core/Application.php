@@ -8,7 +8,7 @@
 
 namespace exelixi;
 
-use exelixi\dispatcher\Request;
+use exelixi\dispatcher\Dispatcher;
 
 /**
  * Class Application
@@ -16,6 +16,9 @@ use exelixi\dispatcher\Request;
  */
 class Application
 {
+    /**
+     * @var Dispatcher
+     */
     private $dispatcher;
 
     /**
@@ -23,6 +26,7 @@ class Application
      */
     public function __construct()
     {
-        echo 'New Application was created';
+        $this->dispatcher = new Dispatcher();
+        $this->dispatcher->dispatch();
     }
 }

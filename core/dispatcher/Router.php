@@ -18,9 +18,9 @@ class Router
         self::$routes['/'] = array("controller" => $controller, "action" => $action, "method" => is_null($method) ? "get" : strtolower($method));
     }
 
-    public static function add($url, $controller, $action, $method = null)
+    public static function add($resource, $controller, $action, $method = null)
     {
-        self::$routes[$url] = array("controller" => $controller, "action" => $action, "method" => is_null($method) ? "get" : strtolower($method));
+        self::$routes[strtolower($resource)] = array("controller" => $controller, "action" => $action, "method" => is_null($method) ? "get" : strtolower($method));
     }
 
     public static function getRoutes(): array
