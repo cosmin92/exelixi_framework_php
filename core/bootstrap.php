@@ -19,6 +19,9 @@ define('DEVELOPMENT', 2);
 // Utilities
 require_once ROOT . 'core/utilities/util_functions.php';
 
+// View
+require_once ROOT . 'core/view/View.php';
+
 // Controller
 require_once ROOT . 'core/controller/Controller.php';
 

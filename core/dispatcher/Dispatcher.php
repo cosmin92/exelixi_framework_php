@@ -70,7 +70,6 @@ class Dispatcher
             $this->controller = Router::getRoutes()[$resource]['controller'];
             $this->action = Router::getRoutes()[$resource]['action'];
             $this->params = count(array_values($params)) > 0 ? array_values($params) : [];
-            var_dump($this->params);
             $this->loadResource();
         }
 
