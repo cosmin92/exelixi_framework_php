@@ -61,10 +61,22 @@ class Dispatcher
             }
 
             if (!array_key_exists($resource, Router::getRoutes())) {
-                //echo "<h1 style='color: red; text-align: center;'>Route undefined!</h1>";
-                header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
-                exit();
-                // return;
+                if (ENV == DEVELOPMENT) {
+                    $title = "Route undefined!";
+                    $content = <<<HTML
+<div class="content">
+    <h4>How to fix?</h4>
+    <p>
+    Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.
+</p>
+</div>
+HTML;
+                    require_once ROOT . "core/utilities/error.php";
+                    exit();
+                } else {
+                    header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
+                    exit();
+                }
             }
 
             $this->controller = Router::getRoutes()[$resource]['controller'];
@@ -78,21 +90,48 @@ class Dispatcher
     private function loadResource()
     {
         $controller_path = ROOT . "app/controllers/";
-        if(!file_exists($controller_path . $this->controller . '.php')){
-            //echo "<h1 style='color: red; text-align: center;'>Controller not found!</h1>";
-            header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
-            exit();
-            //return;
+        if (!file_exists($controller_path . $this->controller . '.php')) {
+            if (ENV == DEVELOPMENT) {
+                $title = "Controller Not Found!";
+                $content = <<<HTML
+<div class="content">
+    <h4>How to fix?</h4>
+    <p>
+    Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.
+</p>
+</div>
+HTML;
+                require_once ROOT . "core/utilities/error.php";
+                exit();
+            } else {
+                header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
+                exit();
+            }
         }
 
         require_once $controller_path . $this->controller . '.php';
         $this->controller = new $this->controller;
 
-        if(!method_exists($this->controller, $this->action)){
+        if (!method_exists($this->controller, $this->action)) {
             //echo "<h1 style='color: red; text-align: center;'>Action not found!</h1>";
-            header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
-            exit();
-            //return;
+            if (ENV == DEVELOPMENT) {
+                $title = "Action Not Found!";
+                $content = <<<HTML
+<div class="content">
+    <h4>How to fix?</h4>
+    <p>
+    Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è considerato il testo segnaposto standard sin dal sedicesimo secolo, quando un anonimo tipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ipsum, e più recentemente da software di impaginazione come Aldus PageMaker, che includeva versioni del Lorem Ipsum.
+</p>
+</div>
+HTML;
+
+                require_once ROOT . "core/utilities/error.php";
+                exit();
+            } else {
+                header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
+                exit();
+            }
+
         }
 
         call_user_func_array([$this->controller, $this->action], [$this->params]);

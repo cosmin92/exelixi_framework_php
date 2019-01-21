@@ -9,6 +9,8 @@
 namespace exelixi;
 
 define('ROOT', str_replace("public/index.php", "", $_SERVER["SCRIPT_FILENAME"]));
+define('WEB_ROOT', str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]));
+
 define('APP_NAME', 'exelixi');
 
 // Environment
@@ -30,6 +32,7 @@ require_once ROOT . 'core/dispatcher/Router.php';
 require_once ROOT . 'core/dispatcher/Request.php';
 require_once ROOT . 'core/dispatcher/Dispatcher.php';
 require_once ROOT . 'config/routes.php';
+require_once ROOT . 'config/init.php';
 
 require_once ROOT . 'core/Application.php';
 
