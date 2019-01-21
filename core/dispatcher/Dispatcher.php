@@ -70,7 +70,8 @@ class Dispatcher
             $this->controller = Router::getRoutes()[$resource]['controller'];
             $this->action = Router::getRoutes()[$resource]['action'];
             $this->params = count(array_values($params)) > 0 ? array_values($params) : [];
-            $this->loadResource("Non home");
+            var_dump($this->params);
+            $this->loadResource();
         }
 
     }
@@ -95,6 +96,6 @@ class Dispatcher
             //return;
         }
 
-        call_user_func_array([$this->controller, $this->action], $this->params);
+        call_user_func_array([$this->controller, $this->action], [$this->params]);
     }
 }

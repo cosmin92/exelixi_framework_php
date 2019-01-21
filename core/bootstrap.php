@@ -11,8 +11,16 @@ namespace exelixi;
 define('ROOT', str_replace("public/index.php", "", $_SERVER["SCRIPT_FILENAME"]));
 define('APP_NAME', 'exelixi');
 
+// Environment
+define('TEST', 0);
+define('PRODUCTION', 1);
+define('DEVELOPMENT', 2);
+
 // Utilities
 require_once ROOT . 'core/utilities/util_functions.php';
+
+// Controller
+require_once ROOT . 'core/controller/Controller.php';
 
 // Dispatcher
 require_once ROOT . 'core/dispatcher/Router.php';
