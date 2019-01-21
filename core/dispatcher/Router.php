@@ -13,14 +13,14 @@ class Router
 {
     private static $routes = array();
 
-    public static function root($controller, $method)
+    public static function root($controller, $action, $method = null)
     {
-        self::$routes['/'] = array("controller" => $controller, "method" => $method);
+        self::$routes['/'] = array("controller" => $controller, "action" => $action, "method" => is_null($method) ? "get" : strtolower($method));
     }
 
-    public static function add($url, $controller, $method)
+    public static function add($url, $controller, $action, $method = null)
     {
-        self::$routes[$url] = array("controller" => $controller, "method" => $method);
+        self::$routes[$url] = array("controller" => $controller, "action" => $action, "method" => is_null($method) ? "get" : strtolower($method));
     }
 
     public static function getRoutes(): array

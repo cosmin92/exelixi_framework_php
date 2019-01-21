@@ -8,11 +8,19 @@
 
 namespace exelixi;
 
+use exelixi\dispatcher\Request;
 
-use exelixi\dispatcher\Router;
-
+/**
+ * Class Application
+ * @package exelixi
+ */
 class Application
 {
+    private $dispatcher;
+
+    /**
+     * Application constructor.
+     */
     public function __construct()
     {
         echo 'New Application was created';
