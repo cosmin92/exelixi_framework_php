@@ -18,8 +18,18 @@ define('TEST', 0);
 define('PRODUCTION', 1);
 define('DEVELOPMENT', 2);
 
+// Request Methods
+define('POST', "POST");
+define('GET', "GET");
+define('PUT', "PUT");
+define('PATCH', "PATCH");
+define('DELETE', "DELETE");
+
 // Utilities
 require_once ROOT . 'core/utilities/util_functions.php';
+
+// Model
+require_once ROOT . 'core/model/Model.php';
 
 // View
 require_once ROOT . 'core/view/View.php';

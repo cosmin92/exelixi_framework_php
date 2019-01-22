@@ -16,7 +16,7 @@ class View
 
     public function __construct(string $controller_name)
     {
-        $this->controller_name = $controller_name;
+        $this->controller_name = str_replace("Controller","", $controller_name);
     }
 
     public function render($view, array $data = null)

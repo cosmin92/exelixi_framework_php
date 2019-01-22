@@ -18,13 +18,27 @@ class Controller
 {
     private $layout = "application_layout";
     private $controller_name;
+    private $model_name;
     private $view;
 
     public function __construct()
     {
         $this->controller_name = strtolower(get_class($this));
         $this->view = new View($this->controller_name);
+        $this->model_name = $this->controller_name;
         $this->view->setLayout($this->layout);
+
+        if (file_exists(ROOT . "app/models/" . $this->model_name . '.php')) {
+            require_once ROOT . "app/models/" . $this->model_name . '.php';
+        }
+    }
+
+    protected function setModelName(string $name): void
+    {
+        $this->model_name = $name;
+        if (file_exists(ROOT . "app/models/" . $this->model_name . '.php')) {
+            require_once ROOT . "app/models/" . $this->model_name . '.php';
+        }
     }
 
     /**
